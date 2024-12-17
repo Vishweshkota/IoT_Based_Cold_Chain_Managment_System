@@ -1,0 +1,46 @@
+@startuml LAB_MODULE_#2
+
+class ConstrainDeviceApp{
+    -startApp()
+    -stopApp()
+}
+
+class SystemPerformanceManager{
+    -init()
+    -handelTelemetry()
+    -startManager()
+    -stopManager()
+}
+
+class BaseSystemUtilTask{
+    -init()
+    -getName()
+    -getTypeID()
+    -getTelemetryValue()
+}
+
+class SystemCpuUtilTask{
+    -init()
+    -getTelemetryValue()
+}
+
+class SystemMemUtilTask{
+    -init()
+    -getTelemetryValue()
+}
+
+
+ConstrainDeviceApp *--> SystemPerformanceManager
+SystemPerformanceManager *--> SystemCpuUtilTask
+SystemPerformanceManager *--> SystemMemUtilTask
+ConfigUtil *-- ConfigUtil
+
+BaseSystemUtilTask <|-- SystemCpuUtilTask
+BaseSystemUtilTask <|-- SystemMemUtilTask
+
+
+SystemPerformanceManager --> ConfigUtil
+
+
+
+@enduml
