@@ -1,6 +1,7 @@
 # IoT_Based_Cold_Chain_Managment_System
 An end to end IoT based Cold/Supply chain management system
-![System Architecture](https://github.com/user-attachments/assets/155d9eec-5464-472a-adc8-0a86185ab399)
+![System Architecture](https://github.com/user-attachments/assets/e2771a37-3079-4f87-a746-9d3143c49e0f)
+
 This project contains 3 key compentents.
 - Constrain Device App
 - Gateway Device App
