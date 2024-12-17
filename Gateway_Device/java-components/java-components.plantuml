@@ -1,0 +1,48 @@
+@startuml LAB_MODULE_#2
+class GatewayDeviceApp{
+    ' -sysPrefMgr:SystemPerformanceManager
+    +startApp()
+    +stopApp()
+    +initConfig()
+    -parseArgs()    
+}
+
+class SystemPerformanceManager{
+    ' -pollRate:int
+    ' -schedExSvc:ScheduledExecutorService
+    ' -sysCpuUtilTask:SystemCpuUtilTask
+    ' -sysMemUtilTask:SystemMemUtilTask
+    +handleTelemetry()
+    +setDataMessageListener()
+    +startManager()
+    +stopManager()    
+}
+
+abstract class BaseSystemUtilTask{
+    ' -name:String
+    ' -typreID:int
+    +getName()
+    +getTypeID()
+    +getTelemetryValue()
+}
+
+class SystemCpuUtilTask{
+    +getTelemetryValue()
+}
+
+class SystemMemUtilTask{
+    +getTelemetryValue()
+}
+
+GatewayDeviceApp  *--> SystemPerformanceManager
+SystemPerformanceManager *--> SystemCpuUtilTask
+SystemPerformanceManager *--> SystemMemUtilTask
+ConfigUtil *-- ConfigUtil
+
+BaseSystemUtilTask <|-- SystemCpuUtilTask
+BaseSystemUtilTask <|-- SystemMemUtilTask
+
+
+SystemPerformanceManager --> ConfigUtil
+
+@enduml

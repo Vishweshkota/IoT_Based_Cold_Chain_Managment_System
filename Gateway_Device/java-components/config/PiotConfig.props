@@ -1,0 +1,108 @@
+#####
+# Configuration file for the Gateway Device App (GDA)
+#
+# This provides a section-based configuration format for use by
+# ConfigUtil with keys defined in ConfigConst.
+#
+# IMPORTANT: Edit this file to meet your local system requirements.
+#
+
+#
+# Cloud client configuration information
+#
+[Cloud.GatewayService]
+credFile       = /home/vishwesh/connectedDevices/gda/ubidots/ubdots.key
+certFile       = /home/vishwesh/connectedDevices/gda/ubidots/ubdots.crt
+host           = industrial.api.ubidots.com
+port           = 1883
+securePort     = 8883
+defaultQoS     = 0
+keepAlive      = 60
+useAsyncClient = True
+enableAuth     = True
+enableCrypt    = True
+#baseUrl        = https://things.ubidots.com/api/v1.6/
+baseUrl         = https://stem.ubidots.com/api/v1.6/
+baseTopic      = /v1.6/devices/
+
+#
+# SMTP client configuration information
+#
+[Smtp.GatewayService]
+credFile       = ./cred/PiotSmtpCred.props
+host           = localhost
+port           = 25
+securePort     = 587
+enableAuth     = True
+enableCrypt    = True
+
+#
+# MQTT client configuration information
+#
+[Mqtt.GatewayService]
+credFile       = ./cred/PiotMqttCred.props
+certFile       = /home/vishwesh/connectedDevices/gda/tls_certificates/server.crt
+host           = localhost
+port           = 1883
+securePort     = 8883
+defaultQoS     = 0
+keepAlive      = 60
+enableAuth     = False
+enableCrypt    = True
+useAsyncClient = True
+
+#
+# CoAP client and server configuration information
+#
+[Coap.GatewayService]
+credFile       = ./cred/PiotCoapCred.props
+certFile       = ./cert/PiotCoapLocalCertFile.pem
+host           = localhost
+port           = 5683
+securePort     = 5684
+enableAuth     = False
+enableCrypt    = False
+enableConfirmedMsgs = True
+
+#
+# GDA specific configuration information
+#
+[GatewayDevice]
+deviceLocationID        = gatewaydevice001
+enableLogging           = True
+pollCycleSecs           = 60
+enableMqttClient        = True
+enableCoapServer        = False
+enableCoapClient        = False
+enableCloudClient       = True
+enableSmtpClient        = False
+enablePersistenceClient = True
+enableSystemPerformance = True
+testGdaDataPath         = /tmp/gda-data
+testCdaDataPath         = /tmp/cda-data
+testEmptyApp            = False
+enableRunForever        = true
+
+# if true, GDA will process humidity change events from CDA
+handleHumidityChangeOnDevice = True
+
+# min seconds between readings before triggering actuation event
+humidityMaxTimePastThreshold = 10
+
+# ideal average humidity level (% relative)
+nominalHumiditySetting       = 40.0
+
+# min value before turning on humidifier (% relative)
+triggerHumidifierFloor       = 30.0
+
+# max value before turning off humidifier (% relative)
+triggerHumidifierCeiling     = 50.0
+
+#
+# Persistence client configuration information
+#
+[Data.GatewayService]
+credFile = ./cred/PiotPersistenceCred.props
+host = localhost
+port = 6379
+enableCrypt = False
